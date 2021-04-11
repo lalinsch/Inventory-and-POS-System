@@ -1,17 +1,13 @@
+import org.assertj.swing.fixture.*;
 import org.hyperskill.hstest.dynamic.DynamicTest;
 import org.hyperskill.hstest.stage.SwingTest;
 import org.hyperskill.hstest.testcase.CheckResult;
 import org.hyperskill.hstest.testing.swing.SwingComponent;
 import winemerchant.GUI.RootWindow;
-import org.assertj.swing.fixture.*;
-import static org.hyperskill.hstest.testing.expect.Expectation.expect;
 
-
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.hyperskill.hstest.testcase.CheckResult.correct;
-import static org.hyperskill.hstest.testcase.CheckResult.wrong;
 
 public class WineMerchantTest extends SwingTest {
 
@@ -86,14 +82,14 @@ public class WineMerchantTest extends SwingTest {
         return correct();
     }
 
-    @DynamicTest (feedback = "When selecting 4 cases, the success message should include the String '48' confirming" +
-            "that 4 cases have successfully been added")
+    @DynamicTest (feedback = "When selecting 4 cases, the success message should include the number '48'" +
+            " in the String confirming they have successfully been added")
     CheckResult test5() {
         Pattern p = Pattern.compile("^.*48.*$");
         sauvignonButton.click();
         amountComboBox.selectItem(3);
         supplierComboBox.enterText("Tom");
-        purchasedPriceTextField.setText("4515.15");
+        purchasedPriceTextField.setText("451.15");
         submitButton.click();
         messageLabel.requireText(p);
         successLabel.requireVisible();
