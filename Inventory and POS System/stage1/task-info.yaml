@@ -1,0 +1,12 @@
+type: edu
+files:
+- name: src/winemerchant/Main.java
+  visible: true
+- name: test/WineMerchantTest.java
+  visible: false
+- name: src/winemerchant/UI.java
+  visible: true
+- name: src/winemerchant/GUI/RootWindow.form
+  visible: true
+- name: src/winemerchant/GUI/RootWindow.java
+  visible: true
