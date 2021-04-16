@@ -14,6 +14,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Inventory and POS System/stage1" />
+            <option value="$PROJECT_DIR$/Inventory and POS System/stage2" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
