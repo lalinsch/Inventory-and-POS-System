@@ -27,11 +27,13 @@ public class SupplierOrderPanel{
     private JLabel purchasedPriceLabel;
     private JTextField purchasedPriceTextField;
     private JLabel successLabel;
+    private ButtonGroup buttonGroup;
 
     //Variables for creating a new supply order.
     SupplierRecord supplierRecord;
     private int[] amountOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private String supplierName;
+    private String[] supplierNames;
     private double purchasedPrice;
     private int casesAmount;
     private int amount;
@@ -41,11 +43,13 @@ public class SupplierOrderPanel{
     public SupplierOrderPanel(SupplierRecord supplierRecord) {
         this.supplierRecord = supplierRecord;
         nameComponents();
-        ButtonGroup buttonGroup = new ButtonGroup();
+        this.buttonGroup = new ButtonGroup();
         buttonGroup.add(merlotButton);
         buttonGroup.add(roseButton);
         buttonGroup.add(sauvignonButton);
         successLabel.setVisible(false);
+
+        supplierNames = supplierRecord.getSuppliers();
 
         //Sets the behaviour of the GUI elements
         merlotButton.addActionListener(new ActionListener() {
@@ -118,17 +122,12 @@ public class SupplierOrderPanel{
 
                 //Display success message and resets the layout
                 if (isValidInput) {
-                    successLabel.setText("Success!");
-                    successLabel.setVisible(true);
-                    submitButton.setEnabled(false);
-                    supplierComboBox.setSelectedIndex(0);
-                    amountComboBox.setSelectedIndex(0);
-                    purchasedPriceTextField.setText("");
                     SupplierOrder supplierOrder = new SupplierOrder(wine, amount, purchasedPrice);
                     supplierRecord.addOrder(supplierName, supplierOrder);
                     messageLabel.setText("Added " + casesAmount + " cases of " + wine.getKind() + " from " +
                             supplierName + " (" + amount + " bottles).");
-                    middlePanel.setVisible(false);
+
+                    restartView();
                 }
             }
         });
@@ -155,6 +154,27 @@ public class SupplierOrderPanel{
         messageLabel.setName("MessageLabel");
         submitButton.setName("SubmitButton");
         successLabel.setName("SuccessLabel");
+    }
+
+    private void populateSupplierCombo() {
+        supplierComboBox.removeAllItems();
+        for (int i = 0; i < supplierNames.length; i++) {
+            supplierComboBox.addItem(supplierNames[i]);
+        }
+    }
+
+    private void restartView() {
+        successLabel.setText("Success!");
+        successLabel.setVisible(true);
+        submitButton.setEnabled(false);
+        supplierComboBox.setSelectedIndex(0);
+        amountComboBox.setSelectedIndex(0);
+        purchasedPriceTextField.setText("");
+        buttonGroup.clearSelection();
+        middlePanel.setVisible(false);
+
+        supplierNames = supplierRecord.getSuppliers();
+        populateSupplierCombo();
     }
 
     public JPanel getMainPanel() {

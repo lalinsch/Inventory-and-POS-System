@@ -1,9 +1,6 @@
 package winemerchant.inventory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SupplierRecord {
@@ -32,6 +29,12 @@ public class SupplierRecord {
             }
             System.out.println("Total orders: " + getTotalOrders() + " Total Value: $" + getTotalValueOfOrders());
         }
+    }
+
+    public String[] getSuppliers() {
+        String[] names = supplierOrderMap.keySet().toArray(new String[0]);
+        Arrays.sort(names);
+        return names;
     }
 
     private int getTotalOrders() {
@@ -88,6 +91,14 @@ public class SupplierRecord {
             return supplierOrderMap.get(supplier);
         }
         return null;
+    }
+
+    public int numberOfOrders() {
+        int sum = 0;
+        for (String supplier : supplierOrderMap.keySet()) {
+            sum += supplierOrderMap.get(supplier).size();
+        }
+        return sum;
     }
 
     public boolean contains(String supplier) {

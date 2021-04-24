@@ -24,8 +24,6 @@ public class SupplierOrder {
         this.purchasedPrice = purchasedPrice;
     }
 
-
-
     public Wine getWine() {
         return wine;
     }
