@@ -12,10 +12,9 @@ import java.util.List;
 
 public class SupplierOrderListPanel {
     private JPanel mainPanel;
-    private JLabel topLabel;
     private JTable ordersTable;
     private JComboBox supplierNameCombo;
-    private JButton refreshButton;
+    private JButton filterButton;
 
     private DefaultTableModel model;
     private TableRowSorter<DefaultTableModel> sorter;
@@ -27,7 +26,7 @@ public class SupplierOrderListPanel {
         this.supplierRecord = supplierRecord;
         this.model = (DefaultTableModel) ordersTable.getModel();
         this.sorter = new TableRowSorter<>(model);
-        refreshButton.addActionListener(new ActionListener() {
+        filterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (supplierNameCombo.getSelectedIndex() == 0) {
@@ -38,8 +37,15 @@ public class SupplierOrderListPanel {
                 }
             }
         });
+        setNames();
         createTable();
         setInitialView();
+    }
+
+    private void setNames() {
+        ordersTable.setName("OrdersTable");
+        supplierNameCombo.setName("SupplierOrderComboBox");
+        filterButton.setName("FilterButton");
     }
 
 

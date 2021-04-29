@@ -43,6 +43,7 @@ public class RootWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tabbedPane.addTab("Input Supplier Order", supplierOrderPanel.getMainPanel());
         tabbedPane.addTab("Supplier Orders List", supplierOrderListPanel.getMainPanel());
+        tabbedPane.setName("TabbedPane");
         add(tabbedPane);
         setSize(600, 500);
         pack();

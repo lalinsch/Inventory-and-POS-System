@@ -6,11 +6,11 @@ files:
   visible: true
 - name: src/winemerchant/GUI/RootWindow.java
   visible: true
-- name: test/Tests.java
-  visible: false
 - name: src/winemerchant/GUI/SupplierOrderPanel.java
   visible: true
 - name: src/winemerchant/GUI/SupplierOrderListPanel.java
   visible: true
 - name: src/winemerchant/GUI/SupplierOrderListPanel.form
   visible: true
+- name: test/WineMerchantTest.java
+  visible: false
