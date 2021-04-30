@@ -14,3 +14,13 @@ files:
   visible: true
 - name: test/WineMerchantTest.java
   visible: false
+- name: screenshots/Screenshot 2021-04-30 at 09.35.30.png
+  visible: true
+- name: screenshots/Screenshot 2021-04-30 at 09.36.57.png
+  visible: true
+- name: screenshots/Screenshot 2021-04-30 at 09.35.41.png
+  visible: true
+- name: screenshots/Screenshot 2021-04-30 at 09.37.29.png
+  visible: true
+- name: screenshots/Screenshot 2021-04-30 at 09.37.20.png
+  visible: true

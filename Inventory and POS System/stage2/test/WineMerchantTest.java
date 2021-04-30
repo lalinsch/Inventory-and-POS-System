@@ -146,10 +146,11 @@ public class WineMerchantTest extends SwingTest {
           "The first item in the Combo Box should give the option to return to view all orders")
   CheckResult test8() {
     supplierOrderComboBox.requireItemCount(4);
-    supplierOrderComboBox.selectItem("Saba");
+    String supplier = supplierOrderComboBox.valueAt(1);
+    supplierOrderComboBox.selectItem(supplier);
     filterButton.click();
     ordersTable.requireRowCount(1);
-    ordersTable.cell(TableCell.row(0).column(0)).requireValue("Saba");
+    ordersTable.cell(TableCell.row(0).column(0)).requireValue(supplier);
     supplierOrderComboBox.selectItem(0);
     filterButton.click();
     ordersTable.requireRowCount(3);

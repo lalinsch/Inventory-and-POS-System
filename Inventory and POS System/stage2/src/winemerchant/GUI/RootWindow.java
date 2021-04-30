@@ -7,6 +7,7 @@ import winemerchant.inventory.SupplierRecord;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 
 public class RootWindow extends JFrame {
     //Swing elements
@@ -27,6 +28,9 @@ public class RootWindow extends JFrame {
         supplierRecord = new SupplierRecord(inventory);
         supplierOrderPanel = new SupplierOrderPanel(supplierRecord);
         supplierOrderListPanel = new SupplierOrderListPanel(supplierRecord);
+
+        tabbedPane.setBackground(Color.GRAY);
+        tabbedPane.setForeground(Color.BLACK);
 
         tabbedPane.addChangeListener(new ChangeListener() {
             @Override

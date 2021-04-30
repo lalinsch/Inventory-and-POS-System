@@ -10,3 +10,5 @@ files:
   visible: true
 - name: src/winemerchant/GUI/RootWindow.java
   visible: true
+- name: screenshots/Screenshot 2021-04-30 at 17.36.31.png
+  visible: true
