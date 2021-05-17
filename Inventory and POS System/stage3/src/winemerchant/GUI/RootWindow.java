@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class RootWindow extends JFrame {
     //Database
@@ -26,11 +27,11 @@ public class RootWindow extends JFrame {
     private SupplierRecord supplierRecord;
 
 
-    public RootWindow(Database database) {
+    public RootWindow(Database database) throws SQLException {
         this.database = database;
         tabbedPane = new JTabbedPane();
         inventory = new Inventory();
-        supplierRecord = new SupplierRecord(inventory, this.database);
+        supplierRecord = database.buildSupplierRecord();
         supplierOrderPanel = new SupplierOrderPanel(supplierRecord);
         supplierOrderListPanel = new SupplierOrderListPanel(supplierRecord);
 

@@ -18,10 +18,10 @@ public class Inventory {
     }
 
     public void addBottles(Wine wine, int amount, double amountPurchased) {
-        switch (wine.getWineType()) {
-            case MERLOT -> merlotUnitStock += amount;
-            case ROSE -> roseUnitStock += amount;
-            case SAUVIGNON -> sauvignonUnitStock += amount;
+        switch (wine.getKind()) {
+            case "Merlot" -> merlotUnitStock += amount;
+            case "Rosé" -> roseUnitStock += amount;
+            case "Sauvignon Blanc" -> sauvignonUnitStock += amount;
         }
         totalValue += amountPurchased;
     }
@@ -76,7 +76,7 @@ public class Inventory {
     public void getStock() {
         System.out.println("Current wine stock:");
         for (Wine.WineType type : Wine.WineType.values()) {
-            System.out.println(type.getType() + " " + type.getType() + " cases: " + getCaseStockByType(type) + " (" + getUnitStockByType(type) + " bottles)");
+            System.out.println(type.getColor() + " " + type.getColor() + " cases: " + getCaseStockByType(type) + " (" + getUnitStockByType(type) + " bottles)");
         }
         System.out.println("Total value: $" + getTotalValue());
     }

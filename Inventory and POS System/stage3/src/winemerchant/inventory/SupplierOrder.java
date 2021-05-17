@@ -36,7 +36,7 @@ public class SupplierOrder {
 
     @Override
     public String toString() {
-        return "Wine:" + wine.getWineType() +
+        return "Wine:" + wine.getKind() +
                 ", Amount purchased:" + amountPurchased +
                 ", Purchased price: $" + purchasedPrice +
                 ", is Paid:" + isPaid;

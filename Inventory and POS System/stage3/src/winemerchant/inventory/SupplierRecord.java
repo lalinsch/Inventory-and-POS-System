@@ -6,14 +6,15 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SupplierRecord {
-    private final Map<String, List<SupplierOrder>> supplierOrderMap;
-    private final Inventory inventory;
+    private Map<String, List<SupplierOrder>> supplierOrderMap;
     private Database database;
 
-    public SupplierRecord(Inventory inventory, Database database) {
-        supplierOrderMap = new HashMap<>();
-        this.inventory = inventory;
+    public SupplierRecord(Database database) {
         this.database = database;
+    }
+
+    public void setSupplierOrderMap(Map<String, List<SupplierOrder>> supplierOrderMap) {
+        this.supplierOrderMap = supplierOrderMap;
     }
 
 
@@ -23,7 +24,7 @@ public class SupplierRecord {
         }
         supplierOrderMap.get(supplier).add(order);
         database.addSupplierOrder(supplier, order);
-        inventory.addBottles(order.getWine(), order.getAmountPurchased(), order.getPurchasedPrice());
+//        inventory.addBottles(order.getWine(), order.getAmountPurchased(), order.getPurchasedPrice());
     }
 
     public void viewAllSupplierRecord() {

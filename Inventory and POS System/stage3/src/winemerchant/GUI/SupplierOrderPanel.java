@@ -5,9 +5,6 @@ import winemerchant.inventory.SupplierRecord;
 import winemerchant.inventory.Wine;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SupplierOrderPanel{
     private JPanel mainPanel;
@@ -16,10 +13,10 @@ public class SupplierOrderPanel{
     private JPanel middlePanel;
     private JLabel instructionLabel;
     private JLabel selectedTypeLabel;
-    private JComboBox supplierComboBox;
+    private JComboBox<Object> supplierComboBox;
     private JLabel supplierLabel;
     private JPanel bottomPanel;
-    private JComboBox amountComboBox;
+    private JComboBox<Integer> amountComboBox;
     private JButton submitButton;
     private JRadioButton roseButton;
     private JRadioButton sauvignonButton;
@@ -37,6 +34,7 @@ public class SupplierOrderPanel{
     private double purchasedPrice;
     private int casesAmount;
     private int amount;
+    private Wine.WineType wineType;
     private Wine wine;
     private boolean isValidInput;
 
@@ -52,83 +50,72 @@ public class SupplierOrderPanel{
         supplierNames = supplierRecord.getSuppliers();
 
         //Sets the behaviour of the GUI elements
-        merlotButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                wine = new Wine(Wine.WineType.MERLOT);
-                selectedTypeLabel.setText("Selected type: " + Wine.WineType.MERLOT);
-                middlePanel.setVisible(true);
-                submitButton.setEnabled(true);
-                successLabel.setVisible(false);
-                messageLabel.setText("");
-            }
+        merlotButton.addActionListener(e -> {
+            wineType = Wine.WineType.MERLOT;
+            selectedTypeLabel.setText("Selected type: " + Wine.WineType.MERLOT);
+            middlePanel.setVisible(true);
+            submitButton.setEnabled(true);
+            successLabel.setVisible(false);
+            messageLabel.setText("");
         });
-        roseButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                wine = new Wine(Wine.WineType.ROSE);
-                selectedTypeLabel.setText("Selected type: " + Wine.WineType.ROSE);
-                middlePanel.setVisible(true);
-                submitButton.setEnabled(true);
-                successLabel.setVisible(false);
-                messageLabel.setText("");
-            }
+        roseButton.addActionListener(e -> {
+            wineType = Wine.WineType.ROSE;
+            selectedTypeLabel.setText("Selected type: " + Wine.WineType.ROSE);
+            middlePanel.setVisible(true);
+            submitButton.setEnabled(true);
+            successLabel.setVisible(false);
+            messageLabel.setText("");
         });
-        sauvignonButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                wine = new Wine(Wine.WineType.SAUVIGNON);
-                selectedTypeLabel.setText("Selected type: " + Wine.WineType.SAUVIGNON);
-                middlePanel.setVisible(true);
-                submitButton.setEnabled(true);
-                successLabel.setVisible(false);
-                messageLabel.setText("");
-            }
+        sauvignonButton.addActionListener(e -> {
+            wineType = Wine.WineType.SAUVIGNON;
+            selectedTypeLabel.setText("Selected type: " + Wine.WineType.SAUVIGNON);
+            middlePanel.setVisible(true);
+            submitButton.setEnabled(true);
+            successLabel.setVisible(false);
+            messageLabel.setText("");
         });
 
         middlePanel.setVisible(false);
         //Populate the dropdown with the possible options
-        for (int i = 0; i < amountOptions.length; i++) {
-            amountComboBox.addItem(amountOptions[i]);
+        for (int amountOption : amountOptions) {
+            amountComboBox.addItem(amountOption);
         }
 
 
-        submitButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isValidInput = true;
-                //Check if the input on the supplier name is valid
-                if (supplierComboBox.getSelectedItem() == null) {
-                    isValidInput = false;
-                    messageLabel.setText("Error: Please enter a name.");
-                } else if (!((String) supplierComboBox.getSelectedItem()).matches("[A-Z][a-z]*")) {
-                    isValidInput = false;
-                    messageLabel.setText("Error: Incorrect name format");
-                } else {
-                    supplierComboBox.addItem((String) supplierComboBox.getSelectedItem());
-                    supplierName = (String) supplierComboBox.getSelectedItem();
-                }
+        submitButton.addActionListener(e -> {
+            isValidInput = true;
+            //Check if the input on the supplier name is valid
+            if (supplierComboBox.getSelectedItem() == null) {
+                isValidInput = false;
+                messageLabel.setText("Error: Please enter a name.");
+            } else if (!((String) supplierComboBox.getSelectedItem()).matches("[A-Z][a-z]*")) {
+                isValidInput = false;
+                messageLabel.setText("Error: Incorrect name format");
+            } else {
+                supplierComboBox.addItem(supplierComboBox.getSelectedItem());
+                supplierName = (String) supplierComboBox.getSelectedItem();
+            }
 
-                //check if the numeric input is valid
-                try {
-                    purchasedPrice = Double.parseDouble(purchasedPriceTextField.getText());
-                    casesAmount = ((Integer) amountComboBox.getSelectedItem());
-                    amount = casesAmount * 12;
-                } catch (NumberFormatException numberFormatException) {
-                    isValidInput = false;
-                    numberFormatException.printStackTrace();
-                    messageLabel.setText("Error: Invalid number format");
-                }
+            //check if the numeric input is valid
+            try {
+                purchasedPrice = Double.parseDouble(purchasedPriceTextField.getText());
+                casesAmount = ((Integer) amountComboBox.getSelectedItem());
+                amount = casesAmount * 12;
+            } catch (NumberFormatException numberFormatException) {
+                isValidInput = false;
+                numberFormatException.printStackTrace();
+                messageLabel.setText("Error: Invalid number format");
+            }
 
-                //Display success message and resets the layout
-                if (isValidInput) {
-                    SupplierOrder supplierOrder = new SupplierOrder(wine, amount, purchasedPrice);
-                    supplierRecord.addOrder(supplierName, supplierOrder);
-                    messageLabel.setText("Added " + casesAmount + " cases of " + wine.getKind() + " from " +
-                            supplierName + " (" + amount + " bottles).");
+            //Display success message and resets the layout
+            if (isValidInput) {
+                wine = new Wine(wineType, amount, purchasedPrice);
+                SupplierOrder supplierOrder = new SupplierOrder(wine, amount, purchasedPrice);
+                supplierRecord.addOrder(supplierName, supplierOrder);
+                messageLabel.setText("Added " + casesAmount + " cases of " + wine.getKind() + " from " +
+                        supplierName + " (" + amount + " bottles).");
 
-                    restartView();
-                }
+                restartView();
             }
         });
     }
@@ -158,8 +145,8 @@ public class SupplierOrderPanel{
 
     private void populateSupplierCombo() {
         supplierComboBox.removeAllItems();
-        for (int i = 0; i < supplierNames.length; i++) {
-            supplierComboBox.addItem(supplierNames[i]);
+        for (String name : supplierNames) {
+            supplierComboBox.addItem(name);
         }
     }
 

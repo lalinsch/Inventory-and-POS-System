@@ -11,7 +11,7 @@ public class Case {
     public Case(Wine.WineType type) {
         wineCase = new ArrayList<>();
         this.type = type;
-        addWinesToCase(type);
+//        addWinesToCase(type);
         isMixed = false;
     }
     public Case(List<Wine> firstWineList, List<Wine> secondWineList) {
@@ -33,12 +33,12 @@ public class Case {
         return wineCase.size();
     }
 
-    //Fills a case with 12 bottles of wine (default)
-    public void addWinesToCase(Wine.WineType type) {
-        for (int i = 0; i < 12; i++) {
-            wineCase.add(new Wine(type));
-        }
-    }
+//    //Fills a case with 12 bottles of wine (default)
+//    public void addWinesToCase(Wine.WineType type) {
+//        for (int i = 0; i < 12; i++) {
+//            wineCase.add(new Wine(type));
+//        }
+//    }
 
     //Not sure if I'll use this method
 //    public void takeWineFromCase(int amount) {

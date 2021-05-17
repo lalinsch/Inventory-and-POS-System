@@ -1,40 +1,38 @@
 package winemerchant.GUI;
 
+import winemerchant.SQL.Database;
 import winemerchant.inventory.SupplierOrder;
 import winemerchant.inventory.SupplierRecord;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Objects;
 
 public class SupplierOrderListPanel {
     private JPanel mainPanel;
     private JTable ordersTable;
-    private JComboBox supplierNameCombo;
+    private JComboBox<String> supplierNameCombo;
     private JButton filterButton;
 
     private DefaultTableModel model;
     private TableRowSorter<DefaultTableModel> sorter;
 
+    private Database database;
     private SupplierRecord supplierRecord;
     private String[] supplierNames;
 
     public SupplierOrderListPanel(SupplierRecord supplierRecord) {
         this.supplierRecord = supplierRecord;
-        this.model = (DefaultTableModel) ordersTable.getModel();
+        this.model = new DefaultTableModel();
         this.sorter = new TableRowSorter<>(model);
-        filterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (supplierNameCombo.getSelectedIndex() == 0) {
-                    sorter.setRowFilter(null);
-                } else {
-                    RowFilter<DefaultTableModel, Object> rf = RowFilter.regexFilter(supplierNameCombo.getSelectedItem().toString(), 0);
-                    sorter.setRowFilter(rf);
-                }
+        filterButton.addActionListener(e -> {
+            if (supplierNameCombo.getSelectedIndex() == 0) {
+                sorter.setRowFilter(null);
+            } else {
+                RowFilter<DefaultTableModel, Object> rf = RowFilter.regexFilter(Objects.requireNonNull(supplierNameCombo.getSelectedItem()).toString(), 0);
+                sorter.setRowFilter(rf);
             }
         });
         setNames();
@@ -58,8 +56,8 @@ public class SupplierOrderListPanel {
     private void populateSupplierCombo() {
         supplierNameCombo.removeAllItems();
         supplierNameCombo.addItem("All Orders");
-        for (int i = 0; i < supplierNames.length; i++) {
-            supplierNameCombo.addItem(supplierNames[i]);
+        for (String supplierName : supplierNames) {
+            supplierNameCombo.addItem(supplierName);
         }
     }
 
@@ -89,8 +87,7 @@ public class SupplierOrderListPanel {
     private void addSupplierOrdersToTable(String supplier) {
         Object[] rowData = new Object[5];
         List<SupplierOrder> orders = supplierRecord.getSupplierOrderListByName(supplier);
-        for (int j = 0; j < orders.size(); j++) {
-            SupplierOrder order = orders.get(j);
+        for (SupplierOrder order : orders) {
             rowData[0] = supplier;
             rowData[1] = order.getWine().getKind();
             rowData[2] = order.getAmountPurchased();

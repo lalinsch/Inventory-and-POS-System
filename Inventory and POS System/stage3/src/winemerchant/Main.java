@@ -4,6 +4,7 @@ import winemerchant.GUI.RootWindow;
 import winemerchant.SQL.Database;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class Main {
 
@@ -12,7 +13,11 @@ public class Main {
         database.createNewTable();
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         SwingUtilities.invokeLater(() -> {
-            JFrame mainWindow = new RootWindow(database);
+            try {
+                JFrame mainWindow = new RootWindow(database);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         });
 
     }

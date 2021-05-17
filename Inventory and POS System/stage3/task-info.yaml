@@ -16,3 +16,5 @@ files:
   visible: true
 - name: src/winemerchant/SQL/database.db
   visible: true
+- name: src/winemerchant/inventory/Case.java
+  visible: true
