@@ -134,7 +134,7 @@ public class SupplierOrderPanel{
     }
 
     private void nameComponents() {
-        // TODO: a space for naming components for testing purposes
+        //a space for naming components for testing purposes
         topPanel.setName("TopPanel");
         middlePanel.setName("MiddlePanel");
         bottomPanel.setName("BottomPanel");

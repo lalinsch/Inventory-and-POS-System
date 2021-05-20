@@ -24,11 +24,10 @@ public class SupplierOrderPanel{
     private JLabel purchasedPriceLabel;
     private JTextField purchasedPriceTextField;
     private JLabel successLabel;
-    private ButtonGroup buttonGroup;
+    private final ButtonGroup buttonGroup;
 
     //Variables for creating a new supply order.
     SupplierRecord supplierRecord;
-    private int[] amountOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     private String supplierName;
     private String[] supplierNames;
     private double purchasedPrice;
@@ -77,6 +76,7 @@ public class SupplierOrderPanel{
 
         middlePanel.setVisible(false);
         //Populate the dropdown with the possible options
+        int[] amountOptions = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
         for (int amountOption : amountOptions) {
             amountComboBox.addItem(amountOption);
         }
@@ -121,7 +121,7 @@ public class SupplierOrderPanel{
     }
 
     private void nameComponents() {
-        // TODO: a space for naming components for testing purposes
+        //a space for naming components for testing purposes
         topPanel.setName("TopPanel");
         middlePanel.setName("MiddlePanel");
         bottomPanel.setName("BottomPanel");

@@ -93,7 +93,7 @@ public class Database {
         return sr;
     }
 
-    //TODO check if table model is sufficient or if it's better to build a supplierRecord
+    //Not using currently but could be used for other types of implementation of JTable
     public DefaultTableModel buildTableModel() {
         String sql = "SELECT * FROM supplier_orders";
         try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql)) {

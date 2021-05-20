@@ -10,6 +10,9 @@ import org.hyperskill.hstest.testing.swing.SwingComponent;
 import winemerchant.GUI.RootWindow;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.regex.Pattern;
 
@@ -21,6 +24,7 @@ public class WineMerchantTest extends SwingTest {
 
     public WineMerchantTest() throws SQLException {
         super(new RootWindow(databaseName));
+        deleteAllRows();
     }
 
     //Database components
@@ -57,7 +61,7 @@ public class WineMerchantTest extends SwingTest {
     @SwingComponent JTableFixture ordersTable;
 
     @DynamicTest
-    CheckResult test1_checkDatabaseFile() {
+    CheckResult test1_checkDatabaseFile() throws IOException {
         File file = new File(args[1]);
         if (!file.exists()) {
             return CheckResult.wrong("You should create a database file " +
@@ -96,7 +100,6 @@ public class WineMerchantTest extends SwingTest {
 
     @DynamicTest(feedback = "SubmitButton should be disabled.")
     CheckResult test4_checkSwingUIElements() {
-        deleteAllRows();
 
         requireVisible(tabbedPane);
         tabbedPane.requireSelectedTab(Index.atIndex(0));
