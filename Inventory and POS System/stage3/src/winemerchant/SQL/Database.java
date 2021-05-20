@@ -13,6 +13,7 @@ public class Database {
 
     public Database(String url) {
         this.url = "jdbc:sqlite:" + url;
+        createNewTable();
     }
 
     public Connection connect() {

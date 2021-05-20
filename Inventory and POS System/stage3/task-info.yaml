@@ -10,11 +10,15 @@ files:
   visible: true
 - name: src/winemerchant/GUI/SupplierOrderListPanel.form
   visible: true
-- name: test/Tests.java
-  visible: false
 - name: src/winemerchant/SQL/Database.java
   visible: true
 - name: src/winemerchant/SQL/database.db
   visible: true
 - name: src/winemerchant/inventory/Case.java
+  visible: true
+- name: src/winemerchant/SQL/test.db
+  visible: true
+- name: test/WineMerchantTest.java
+  visible: false
+- name: test.db
   visible: true

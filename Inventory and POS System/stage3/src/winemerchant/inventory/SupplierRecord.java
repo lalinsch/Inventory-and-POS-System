@@ -11,6 +11,7 @@ public class SupplierRecord {
 
     public SupplierRecord(Database database) {
         this.database = database;
+        this.supplierOrderMap = database.getSupplierOrderMap();
     }
 
     public void setSupplierOrderMap(Map<String, List<SupplierOrder>> supplierOrderMap) {

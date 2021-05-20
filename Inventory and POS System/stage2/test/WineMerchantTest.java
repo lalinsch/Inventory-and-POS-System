@@ -7,7 +7,6 @@ import org.hyperskill.hstest.testcase.CheckResult;
 import org.hyperskill.hstest.testing.swing.SwingComponent;
 import winemerchant.GUI.RootWindow;
 
-import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import static org.hyperskill.hstest.testcase.CheckResult.correct;

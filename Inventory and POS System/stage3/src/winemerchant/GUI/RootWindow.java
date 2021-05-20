@@ -27,8 +27,8 @@ public class RootWindow extends JFrame {
     private SupplierRecord supplierRecord;
 
 
-    public RootWindow(Database database) throws SQLException {
-        this.database = database;
+    public RootWindow(String databaseURL) throws SQLException {
+        database = new Database(databaseURL);
         tabbedPane = new JTabbedPane();
         inventory = new Inventory();
         supplierRecord = database.buildSupplierRecord();
