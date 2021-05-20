@@ -7,12 +7,14 @@ import org.hyperskill.hstest.stage.SwingTest;
 import org.hyperskill.hstest.testcase.CheckResult;
 import org.hyperskill.hstest.testing.TestedProgram;
 import org.hyperskill.hstest.testing.swing.SwingComponent;
+import org.junit.After;
 import winemerchant.GUI.RootWindow;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.regex.Pattern;
 
@@ -24,7 +26,6 @@ public class WineMerchantTest extends SwingTest {
 
     public WineMerchantTest() throws SQLException {
         super(new RootWindow(databaseName));
-        deleteAllRows();
     }
 
     //Database components
@@ -253,6 +254,16 @@ public class WineMerchantTest extends SwingTest {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @After
+    public void deleteFile() {
+        try {
+            deleteAllRows();
+            Files.delete(Paths.get(databaseName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void closeConnection() {
