@@ -13,7 +13,7 @@ public class Database {
 
     public Database(String url) {
         this.url = "jdbc:sqlite:" + url;
-        createNewTable();
+        createSupplierOrderTable();
     }
 
     public Connection connect() {
@@ -26,7 +26,7 @@ public class Database {
         return conn;
     }
 
-    public void createNewTable() {
+    public void createSupplierOrderTable() {
         String sql = "CREATE TABLE IF NOT EXISTS \"supplier_orders\" (\n" +
                 "\t\"order_id\"\tINTEGER,\n" +
                 "\t\"supplier_name\"\tTEXT,\n" +

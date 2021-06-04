@@ -1,0 +1,20 @@
+type: edu
+files:
+- name: src/winemerchant/Main.java
+  visible: true
+- name: src/winemerchant/GUI/RootWindow.java
+  visible: true
+- name: src/winemerchant/GUI/SupplierOrderPanel.java
+  visible: true
+- name: src/winemerchant/GUI/SupplierOrderListPanel.java
+  visible: true
+- name: src/winemerchant/GUI/SupplierOrderListPanel.form
+  visible: true
+- name: src/winemerchant/SQL/Database.java
+  visible: true
+- name: src/winemerchant/inventory/Case.java
+  visible: true
+- name: test/Tests.java
+  visible: false
+- name: src/winemerchant/SQL/database.db
+  visible: true

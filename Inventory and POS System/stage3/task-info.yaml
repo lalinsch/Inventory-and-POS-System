@@ -20,5 +20,3 @@ files:
   visible: true
 - name: test/WineMerchantTest.java
   visible: false
-- name: tast.db
-  visible: true
