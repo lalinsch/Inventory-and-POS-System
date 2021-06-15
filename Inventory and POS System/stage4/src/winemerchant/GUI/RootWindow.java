@@ -46,8 +46,10 @@ public class RootWindow extends JFrame {
                 int index = tabbedPane.getSelectedIndex();
                 if (index == 1) {
                     supplierOrderListPanel.setInitialView();
+                } else if (index == 2) {
+                    inventoryPanel.refreshData();
                 }
-            }
+             }
         });
 
         //Populate the window for initial launch.
