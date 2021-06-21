@@ -35,8 +35,6 @@ public class WineMerchantTest extends SwingTest {
     //Main Window Components
     @SwingComponent
     JTabbedPaneFixture tabbedPane;
-//  @SwingComponent JPanelFixture submitOrderPanel;
-//  @SwingComponent JPanelFixture orderListPanel;
 
     //First Pane components
     @SwingComponent JPanelFixture topPanel;

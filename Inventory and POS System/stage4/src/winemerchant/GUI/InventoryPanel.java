@@ -18,10 +18,10 @@ public class InventoryPanel {
     private JLabel sauvignonLabel;
     private JLabel totalLabel;
     private JTable inventoryTable;
-    private DefaultTableModel model;
 
     public InventoryPanel(Inventory inventory) {
         this.inventory = inventory;
+        nameComponents();
         refreshData();
     }
 
@@ -35,5 +35,12 @@ public class InventoryPanel {
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public void nameComponents() {
+        merlotLabel.setName("MerlotAmountLabel");
+        roseLabel.setName("RoseAmountLabel");
+        sauvignonLabel.setName("SauvignonAmountLabel");
+        totalLabel.setName("TotalAmountLabel");
     }
 }

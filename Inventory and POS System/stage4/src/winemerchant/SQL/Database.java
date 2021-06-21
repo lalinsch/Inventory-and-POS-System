@@ -30,13 +30,12 @@ public class Database {
 
     public void createSupplierOrderTable() {
         String sql = "CREATE TABLE IF NOT EXISTS \"supplier_orders\" (\n" +
-                "'order_id' INTEGER,\n" +
+                "'order_id' INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 "'supplier_name' TEXT,\n" +
                 "'wine_type' TEXT,\n" +
                 "'amount_purchased' INTEGER,\n" +
                 "'price_paid' NUMERIC,\n" +
-                "'is_paid' INTEGER,\n" +
-                "'order_id' PRIMARY KEY AUTOINCREMENT);";
+                "'is_paid' INTEGER)";
         try (Connection conn = this.connect(); Statement stmt = conn.createStatement()) {
             stmt.execute(sql);
         } catch (SQLException throwables) {
