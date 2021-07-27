@@ -53,17 +53,22 @@ public class Inventory {
             if (inventoryMap.containsKey(wineTypeOne) && (inventoryMap.containsKey(wineTypeTwo)) ) {
                 int wineOneAmount = inventoryMap.get(wineTypeOne);
                 int wineTwoAmount = inventoryMap.get(wineTypeTwo);
-
-                inventoryMap.replace(wineTypeOne, wineOneAmount - 6);
-                inventoryMap.replace(wineTypeTwo, wineTwoAmount - 6);
-                return true;
+                if (wineOneAmount < 6 || wineTwoAmount < 6) {
+                    System.out.println("Not enough bottles for sale");
+                    return false;
+                } else if (database.inputSaleToInventory(sale.getMixedOrderWineOne(), 6) && database.inputSaleToInventory(sale.getMixedOrderWineTwo(), 6)) {
+                    refreshData();
+                    return true;
+                }
             }
         } else {
             String wineType = sale.getSingleOrderWineType().toString();
             if (inventoryMap.containsKey(sale.getSingleOrderWineType())) {
                 int wineAmount = inventoryMap.get(wineType);
-                inventoryMap.replace(wineType, wineAmount - 12);
-                return true;
+                if(database.inputSaleToInventory(sale.getSingleOrderWineType(), 12)) {
+                    refreshData();
+                    return true;
+                }
             }
         }
         return false;

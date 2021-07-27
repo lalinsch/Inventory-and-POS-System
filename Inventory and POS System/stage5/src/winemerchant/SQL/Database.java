@@ -1,9 +1,6 @@
 package winemerchant.SQL;
 
-import winemerchant.inventory.Inventory;
-import winemerchant.inventory.SupplierOrder;
-import winemerchant.inventory.SupplierRecord;
-import winemerchant.inventory.Wine;
+import winemerchant.inventory.*;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -203,6 +200,23 @@ public class Database {
             e.printStackTrace();
         }
         return inventory;
+    }
+
+    public boolean inputSaleToInventory(String wine, int amountSold) {
+        String sql = "INSERT INTO inventory (wine_type, unit_count)\n" +
+                "VALUES(?, ?) \n" +
+                "ON CONFLICT(wine_type) \n" +
+                "DO UPDATE SET unit_count=unit_count - ?;";
+        try(Connection conn = this.connect(); PreparedStatement pstmt = connect().prepareStatement(sql)) {
+            pstmt.setString(1, wine.toString());
+            pstmt.setInt(2, amountSold);
+            pstmt.setInt(3, amountSold);
+            pstmt.execute();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 

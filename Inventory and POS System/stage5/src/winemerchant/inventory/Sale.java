@@ -5,9 +5,9 @@ public class Sale {
     private double saleAmount;
     private boolean isDiscounted;
     private boolean isMixed;
-    private Wine.WineType singleOrderWineType;
-    private Wine.WineType mixedOrderWineOne;
-    private Wine.WineType mixedOrderWineTwo;
+    private String singleOrderWineType;
+    private String mixedOrderWineOne;
+    private String mixedOrderWineTwo;
 
     public String getCustomerName() {
         return customerName;
@@ -41,27 +41,27 @@ public class Sale {
         isMixed = mixed;
     }
 
-    public Wine.WineType getSingleOrderWineType() {
+    public String getSingleOrderWineType() {
         return singleOrderWineType;
     }
 
-    public void setSingleOrderWineType(Wine.WineType singleOrderWineType) {
+    public void setSingleOrderWineType(String singleOrderWineType) {
         this.singleOrderWineType = singleOrderWineType;
     }
 
-    public Wine.WineType getMixedOrderWineOne() {
+    public String getMixedOrderWineOne() {
         return mixedOrderWineOne;
     }
 
-    public void setMixedOrderWineOne(Wine.WineType mixedOrderWineOne) {
+    public void setMixedOrderWineOne(String mixedOrderWineOne) {
         this.mixedOrderWineOne = mixedOrderWineOne;
     }
 
-    public Wine.WineType getMixedOrderWineTwo() {
+    public String getMixedOrderWineTwo() {
         return mixedOrderWineTwo;
     }
 
-    public void setMixedOrderWineTwo(Wine.WineType mixedOrderWineTwo) {
+    public void setMixedOrderWineTwo(String mixedOrderWineTwo) {
         this.mixedOrderWineTwo = mixedOrderWineTwo;
     }
 }

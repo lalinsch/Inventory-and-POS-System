@@ -8,7 +8,7 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) throws ClassNotFoundException, UnsupportedLookAndFeelException, InstantiationException, IllegalAccessException {
-        String databaseURL = "Inventory and POS System/stage4/src/winemerchant/SQL/database.db";
+        String databaseURL = "Inventory and POS System/stage5/src/winemerchant/SQL/database.db";
         if (args.length > 0) {
             if (args[0].equals("-fileName")) {
                 databaseURL = args[1];
