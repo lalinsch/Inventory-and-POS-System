@@ -1,7 +1,5 @@
 type: edu
 files:
-- name: test/Tests.java
-  visible: false
 - name: src/winemerchant/GUI/POSPanel.form
   visible: true
 - name: src/winemerchant/GUI/POSPanel.java

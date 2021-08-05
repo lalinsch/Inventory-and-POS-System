@@ -50,12 +50,16 @@ public class RootWindow extends JFrame {
                     supplierOrderListPanel.setInitialView();
                 } else if (index == 2) {
                     inventoryPanel.refreshData();
+                } else if (index == 3) {
+                    inventory.refreshData();
+                    posPanel.resetUI();
                 }
              }
         });
 
         //Populate the window for initial launch.
         setTitle("Wine Merchant");
+        setMinimumSize(new Dimension(800, 600));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tabbedPane.addTab("Input Supplier Order", supplierOrderPanel.getMainPanel());
         tabbedPane.addTab("Supplier Orders List", supplierOrderListPanel.getMainPanel());
@@ -63,7 +67,6 @@ public class RootWindow extends JFrame {
         tabbedPane.addTab("Customer Sale", posPanel.getMainPanel());
         tabbedPane.setName("TabbedPane");
         add(tabbedPane);
-        setSize(600, 500);
         pack();
         setVisible(true);
     }

@@ -65,7 +65,10 @@ public class Inventory {
             String wineType = sale.getSingleOrderWineType().toString();
             if (inventoryMap.containsKey(sale.getSingleOrderWineType())) {
                 int wineAmount = inventoryMap.get(wineType);
-                if(database.inputSaleToInventory(sale.getSingleOrderWineType(), 12)) {
+                if (wineAmount < 12) {
+                    System.out.println("Not enough bottles for sale");
+                    return false;
+                } else if(database.inputSaleToInventory(sale.getSingleOrderWineType(), 12)) {
                     refreshData();
                     return true;
                 }

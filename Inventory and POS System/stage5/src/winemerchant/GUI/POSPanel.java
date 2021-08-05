@@ -6,6 +6,7 @@ import winemerchant.inventory.Sale;
 import javax.swing.*;
 import java.util.regex.Pattern;
 
+
 public class POSPanel {
     private Inventory inventory;
     private JPanel mainPanel;
@@ -70,15 +71,12 @@ public class POSPanel {
                     "[\\x00-\\x20]*");// Optional trailing "whitespace"
 
     public POSPanel (Inventory inventory) {
+        nameComponents();
         this.inventory = inventory;
-        singleTypePanel.setVisible(false);
-        mixedTypePanel.setVisible(false);
-        bottomPanel.setVisible(true);
-        submitButton.setEnabled(false);
-        setSaleElementsVisibility(false);
-        sale = new Sale();
         setGUIElementActions();
-        populateComboBoxes();
+        resetUI();
+        buttonGroup.add(singleTypeOrderButton);
+        buttonGroup.add(mixedTypeOrderButton);
     }
 
     private void setSaleElementsVisibility(boolean bool) {
@@ -89,13 +87,19 @@ public class POSPanel {
             submitButton.setEnabled(true);
         } else {
             customerNameField.setEnabled(false);
+            customerNameField.setText("");
             saleAmountField.setEnabled(false);
+            saleAmountField.setText("");
             loyaltyDiscountButton.setEnabled(false);
+            loyaltyDiscountButton.setSelected(false);
         }
 
     }
 
     private void populateComboBoxes() {
+        singleWineKindBox.removeAllItems();
+        mixedWineComboBox1.removeAllItems();
+        mixedWineComboBox2.removeAllItems();
         for (String wineType : inventory.getInventoryMap().keySet()) {
             singleWineKindBox.addItem(wineType);
             mixedWineComboBox1.addItem(wineType);
@@ -117,6 +121,7 @@ public class POSPanel {
         buttonGroup.add(singleTypeOrderButton);
         buttonGroup.add(mixedTypeOrderButton);
         singleTypeOrderButton.addActionListener(e -> {
+            successLabel.setText("");
             sale.setMixed(false);
             mixedTypePanel.setVisible(false);
             singleTypePanel.setVisible(true);
@@ -125,6 +130,7 @@ public class POSPanel {
         });
 
         mixedTypeOrderButton.addActionListener(e -> {
+            successLabel.setText("");
             sale.setMixed(true);
             singleTypePanel.setVisible(false);
             mixedTypePanel.setVisible(true);
@@ -142,7 +148,7 @@ public class POSPanel {
 
         mixedConfirmButton.addActionListener(e -> {
             if (sale.isMixed() && !isValidMix()) {
-                messageLabel.setText("Wines can't be the same in a mixed case");
+                messageLabel.setText("Error: Wines can't be the same in a mixed case");
                 setSaleElementsVisibility(false);
             } else {
                 sale.setMixedOrderWineOne((String) mixedWineComboBox1.getSelectedItem());
@@ -156,14 +162,46 @@ public class POSPanel {
         submitButton.addActionListener(e -> {
             if (customerInputIsValid()) {
                 if (inventory.inputSale(sale)) {
-                    successLabel.setText("Success");
+                    if (sale.isMixed()) {
+                        sale.setMixedOrderWineOne((String) mixedWineComboBox1.getSelectedItem());
+                        sale.setMixedOrderWineTwo((String) mixedWineComboBox2.getSelectedItem());
+                    } else {
+                        sale.setSingleOrderWineType((String) singleWineKindBox.getSelectedItem());
+                    }
+
+                    if (loyaltyDiscountButton.isSelected()) {
+                        sale.setDiscounted(true);
+                    }
+
+                    sale.setCustomerName(customerNameField.getText());
+
+                    sale.setSaleAmount(Double.valueOf(saleAmountField.getText()));
+                    if(sale.isDiscounted()) {
+                        sale.setSaleAmount(sale.getSaleAmount() * .85);
+                    }
+                    successLabel.setText("Order sold to " + sale.getCustomerName() + " of £" + String.format("%.2f", sale.getSaleAmount()));
+                    resetUI();
                 } else {
-                    successLabel.setText("Something went wrong, check your inventory");
+                    successLabel.setText("Error: Something went wrong, check your inventory");
                 }
             } else {
-                successLabel.setText("Order wasn't submitted, check the format of your data");
+                successLabel.setText("Error: Order wasn't submitted, check the format of your data");
             }
         });
+
+
+    }
+
+    public void resetUI() {
+        buttonGroup.clearSelection();
+        populateComboBoxes();
+        singleTypePanel.setVisible(false);
+        mixedTypePanel.setVisible(false);
+        bottomPanel.setVisible(true);
+        submitButton.setEnabled(false);
+        setSaleElementsVisibility(false);
+        messageLabel.setText("");
+        sale = new Sale();
     }
 
     public boolean customerInputIsValid() {
@@ -175,6 +213,28 @@ public class POSPanel {
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public void nameComponents() {
+        //a space for naming components for testing purposes
+        topPanel.setName("PosTopPanel");
+        bottomPanel.setName("PosBottomPanel");
+        singleTypePanel.setName("SingleTypePanel");
+        mixedTypePanel.setName("MixedTypePanel");
+        instructionalLabel.setName("PosInstructionLabel");
+        singleTypeOrderButton.setName("SingleTypeOrderButton");
+        mixedTypeOrderButton.setName("MixedTypeOrderButton");
+        singleWineKindBox.setName("SingleWineKindBox");
+        singleConfirmButton.setName("SingleConfirmButton");
+        mixedWineComboBox1.setName("MixedWineComboBox1");
+        mixedWineComboBox2.setName("MixedWineComboBox2");
+        mixedConfirmButton.setName("MixedConfirmButton");
+        customerNameField.setName("CustomerNameField");
+        saleAmountField.setName("SaleAmountField");
+        loyaltyDiscountButton.setName("LoyaltyDiscountButton");
+        submitButton.setName("SubmitOrderButton");
+        messageLabel.setName("SaleMessageLabel");
+        successLabel.setName("SaleSuccessMessageLabel");
     }
 
 }
