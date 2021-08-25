@@ -18,29 +18,45 @@ public class Inventory {
     }
 
     public void addBottles(Wine wine, int amount, double amountPurchased) {
-        switch (wine.getKind()) {
-            case "Merlot" -> merlotUnitStock += amount;
-            case "Rosé" -> roseUnitStock += amount;
-            case "Sauvignon Blanc" -> sauvignonUnitStock += amount;
+        if (wine.getKind().equals("Merlot")) {
+            merlotUnitStock += amount;
+        } else if (wine.getKind().equals("Rosé")) {
+            roseUnitStock += amount;
+        } else if (wine.getKind().equals("Sauvignon Blanc")) {
+            sauvignonUnitStock += amount;
         }
+//        switch (wine.getKind()) {
+//            case "Merlot" -> merlotUnitStock += amount;
+//            case "Rosé" -> roseUnitStock += amount;
+//            case "Sauvignon Blanc" -> sauvignonUnitStock += amount;
+//        }
         totalValue += amountPurchased;
     }
 
     public int getUnitStockByType(Wine.WineType type) {
-        switch (type) {
-            case MERLOT -> {
-                return merlotUnitStock;
-            }
-            case ROSE -> {
-                return roseUnitStock;
-            }
-            case SAUVIGNON -> {
-                return sauvignonUnitStock;
-            }
-            default -> {
-                return 0;
-            }
+        if (type == Wine.WineType.MERLOT) {
+            return merlotUnitStock;
+        } else if (type == Wine.WineType.ROSE) {
+            return roseUnitStock;
+        } else if (type == Wine.WineType.SAUVIGNON) {
+            return sauvignonUnitStock;
+        } else {
+            return 0;
         }
+//        switch (type) {
+//            case MERLOT -> {
+//                return merlotUnitStock;
+//            }
+//            case ROSE -> {
+//                return roseUnitStock;
+//            }
+//            case SAUVIGNON -> {
+//                return sauvignonUnitStock;
+//            }
+//            default -> {
+//                return 0;
+//            }
+//        }
     }
 
     public int getMerlotUnitStock() {
@@ -56,20 +72,29 @@ public class Inventory {
     }
 
     public int getCaseStockByType(Wine.WineType type) {
-        switch (type) {
-            case MERLOT -> {
-                return merlotUnitStock / 12;
-            }
-            case ROSE -> {
-                return roseUnitStock / 12;
-            }
-            case SAUVIGNON -> {
-                return sauvignonUnitStock / 12;
-            }
-            default -> {
-                return 0;
-            }
+        if (type == Wine.WineType.MERLOT) {
+            return merlotUnitStock / 12;
+        } else if (type == Wine.WineType.ROSE) {
+            return roseUnitStock / 12;
+        } else if (type == Wine.WineType.SAUVIGNON) {
+            return sauvignonUnitStock / 12;
+        } else {
+            return 0;
         }
+//        switch (type) {
+//            case MERLOT -> {
+//                return merlotUnitStock / 12;
+//            }
+//            case ROSE -> {
+//                return roseUnitStock / 12;
+//            }
+//            case SAUVIGNON -> {
+//                return sauvignonUnitStock / 12;
+//            }
+//            default -> {
+//                return 0;
+//            }
+//        }
     }
 
 
