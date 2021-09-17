@@ -27,6 +27,7 @@ public class SupplierOrderPanel{
     private JLabel purchasedPriceLabel;
     private JTextField purchasedPriceTextField;
     private JLabel successLabel;
+    private JLabel casesTextField;
     private ButtonGroup buttonGroup;
 
     //Variables for creating a new supply order.
@@ -123,9 +124,10 @@ public class SupplierOrderPanel{
                 //Display success message and resets the layout
                 if (isValidInput) {
                     SupplierOrder supplierOrder = new SupplierOrder(wine, amount, purchasedPrice);
+                    messageLabel.setText("");
                     supplierRecord.addOrder(supplierName, supplierOrder);
-                    messageLabel.setText("Added " + casesAmount + " cases of " + wine.getKind() + " from " +
-                            supplierName + " (" + amount + " bottles).");
+                    successLabel.setText("<html><body><center>Success! <br>" + casesAmount + " cases of " + wine.getKind() + " from " +
+                            supplierName + " (" + amount + " bottles)</center></body></html>");
 
                     restartView();
                 }
@@ -164,7 +166,7 @@ public class SupplierOrderPanel{
     }
 
     private void restartView() {
-        successLabel.setText("Success!");
+//        successLabel.setText("Success!");
         successLabel.setVisible(true);
         submitButton.setEnabled(false);
         supplierComboBox.setSelectedIndex(0);

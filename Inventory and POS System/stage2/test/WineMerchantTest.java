@@ -106,7 +106,7 @@ public class WineMerchantTest extends SwingTest {
     supplierComboBox.enterText("Tom");
     purchasedPriceTextField.setText("451.15");
     submitButton.click();
-    messageLabel.requireText(p);
+    successLabel.requireText(p);
     successLabel.requireVisible();
     return correct();
   }
@@ -133,7 +133,7 @@ public class WineMerchantTest extends SwingTest {
     supplierComboBox.enterText("Jesus");
     purchasedPriceTextField.setText("7000");
     submitButton.click();
-    messageLabel.requireText(p);
+    successLabel.requireText(p);
     successLabel.requireVisible();
     tabbedPane.selectTab(1);
     ordersTable.requireRowCount(3);

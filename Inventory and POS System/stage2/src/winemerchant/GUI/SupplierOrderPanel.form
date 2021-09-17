@@ -11,10 +11,10 @@
     </properties>
     <border type="none"/>
     <children>
-      <grid id="49744" binding="topPanel" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="49744" binding="topPanel" layout-manager="GridLayoutManager" row-count="4" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
         </constraints>
         <properties>
           <background color="-5884901"/>
@@ -27,38 +27,44 @@
             </constraints>
             <properties>
               <font name="SF Pro" size="14"/>
+              <foreground color="-1"/>
               <text value="Merlot"/>
             </properties>
           </component>
           <component id="df766" class="javax.swing.JRadioButton" binding="roseButton">
             <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-1"/>
               <text value="Rosé"/>
             </properties>
           </component>
           <component id="115c8" class="javax.swing.JRadioButton" binding="sauvignonButton">
             <constraints>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <foreground color="-1"/>
               <text value="Sauvignon"/>
             </properties>
           </component>
           <component id="fce29" class="javax.swing.JLabel" binding="instructionLabel">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <preferred-size width="160" height="30"/>
+              </grid>
             </constraints>
             <properties>
               <font name="SF Pro" size="14"/>
               <foreground color="-3031151"/>
               <text value="Select the type of wine:"/>
+              <verticalAlignment value="3"/>
             </properties>
           </component>
         </children>
       </grid>
-      <grid id="60853" binding="middlePanel" layout-manager="GridLayoutManager" row-count="3" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="60853" binding="middlePanel" layout-manager="GridLayoutManager" row-count="6" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -68,19 +74,9 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="8363" class="javax.swing.JComboBox" binding="supplierComboBox">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <editable value="true"/>
-            </properties>
-          </component>
           <component id="b98e7" class="javax.swing.JLabel" binding="supplierLabel">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="SF Pro" size="14"/>
@@ -88,37 +84,19 @@
               <text value="Supplier:"/>
             </properties>
           </component>
-          <component id="2ecfa" class="javax.swing.JLabel">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="SF Pro" size="14"/>
-              <foreground color="-5884901"/>
-              <text value="cases."/>
-            </properties>
-          </component>
           <component id="4a3af" class="javax.swing.JLabel" binding="purchasedPriceLabel">
             <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="SF Pro" size="14"/>
               <foreground color="-5884901"/>
-              <text value="Purchased Price: £"/>
+              <text value="Purchased Price:"/>
             </properties>
-          </component>
-          <component id="c973b" class="javax.swing.JTextField" binding="purchasedPriceTextField">
-            <constraints>
-              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
           </component>
           <component id="18e5e" class="javax.swing.JLabel" binding="selectedTypeLabel">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="SF Pro" size="14"/>
@@ -126,11 +104,49 @@
               <text value="No wine selected."/>
             </properties>
           </component>
-          <component id="5a9d8" class="javax.swing.JComboBox" binding="amountComboBox">
+          <component id="c973b" class="javax.swing.JTextField" binding="purchasedPriceTextField">
             <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
             </constraints>
             <properties/>
+          </component>
+          <component id="8363" class="javax.swing.JComboBox" binding="supplierComboBox">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="true"/>
+            </properties>
+          </component>
+          <component id="5a9d8" class="javax.swing.JComboBox" binding="amountComboBox">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="2ecfa" class="javax.swing.JLabel" binding="casesTextField">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="SF Pro" size="14"/>
+              <foreground color="-5884901"/>
+              <text value="cases"/>
+            </properties>
+          </component>
+          <component id="97ead" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="SF Pro" size="14"/>
+              <foreground color="-5884901"/>
+              <text value="£"/>
+            </properties>
           </component>
         </children>
       </grid>
